@@ -23,10 +23,10 @@ class SearchControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $controllerManager)
     {
-        /* @var ControllerManager $controllerManager */
+        /** @var ControllerManager $controllerManager */
         $serviceManager = $controllerManager->getServiceLocator();
 
-        /* @var Mapper\Module $moduleMapper */
+        /** @var Mapper\Module $moduleMapper */
         $moduleMapper = $serviceManager->get('zfmodule_mapper_module');
 
         return new SearchController($moduleMapper);
