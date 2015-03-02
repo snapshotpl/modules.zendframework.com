@@ -12,6 +12,12 @@ use Application\View;
 use Psr\Log;
 
 return [
+    'zf-modules' => [
+        'repository' => [
+            'owner' => 'zendframework',
+            'name'  => 'modules.zendframework.com',
+        ],
+    ],
     'router' => [
         'routes' => [
             'live-search' => [
@@ -35,6 +41,16 @@ return [
                 ],
                 'priority' => 1,
                 'may_terminate' => true,
+            ],
+            'contributors' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route'    => '/contributors',
+                    'defaults' => [
+                        'controller' => Controller\ContributorsController::class,
+                        'action'     => 'index',
+                    ],
+                ],
             ],
             'feed' => [
                 'type' => 'Literal',
@@ -83,6 +99,7 @@ return [
         'factories' => [
             Controller\IndexController::class => Controller\IndexControllerFactory::class,
             Controller\SearchController::class => Controller\SearchControllerFactory::class,
+            Controller\ContributorsController::class => Controller\ContributorsControllerFactory::class,
         ],
     ],
     'service_manager' => [
@@ -118,6 +135,7 @@ return [
     'view_helpers' => [
         'factories' => [
             'sanitizeHtml' => View\Helper\SanitizeHtmlFactory::class,
+            'githubRepositoryUrl' => View\Helper\GitHubRepositoryUrlFactory::class,
         ],
     ],
 ];
